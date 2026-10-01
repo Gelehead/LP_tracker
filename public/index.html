@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rank Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+  <main class="wrap">
+    <header class="top">
+      <div>
+        <h1>Rank Tracker</h1>
+        <p class="muted" id="status">Loading…</p>
+      </div>
+      <button id="refresh" class="btn">Refresh now</button>
+    </header>
+
+    <div id="banner" class="banner" hidden></div>
+
+    <form id="add" class="add">
+      <input id="riotId" placeholder="Riot ID, e.g. Faker#KR1" autocomplete="off" required />
+      <select id="region" aria-label="Server"></select>
+      <button class="btn primary" type="submit">Add player</button>
+      <span id="addMsg" class="add-msg" role="status"></span>
+    </form>
+
+    <div class="filters">
+      <div class="seg" id="queueSeg" role="group" aria-label="Queue">
+        <button data-v="RANKED_SOLO_5x5" class="on">Solo/Duo</button>
+        <button data-v="RANKED_FLEX_SR">Flex</button>
+      </div>
+      <div class="seg" id="rangeSeg" role="group" aria-label="Time range">
+        <button data-v="1">24h</button>
+        <button data-v="7" class="on">7 days</button>
+        <button data-v="30">30 days</button>
+        <button data-v="0">All</button>
+      </div>
+    </div>
+
+    <section id="cards" class="cards"></section>
+
+    <section class="card chart-card">
+      <h2>LP progression</h2>
+      <div id="legend" class="legend"></div>
+      <div class="chart-box">
+        <canvas id="chart" aria-label="LP progression chart"></canvas>
+        <div id="tip" class="tip" hidden></div>
+        <p id="empty" class="empty" hidden>No ranked games recorded in this range yet. Data builds up as the tracker polls.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Rank changes</h2>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>When</th><th>Player</th><th>Rank</th><th class="num">LP</th><th class="num">W / L</th></tr></thead>
+          <tbody id="log"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "lol-rank-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Track League of Legends ranked LP progress for a group of friends",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.js"
+  },
+  "engines": {
+    "node": ">=22.9"
+  }
+}
